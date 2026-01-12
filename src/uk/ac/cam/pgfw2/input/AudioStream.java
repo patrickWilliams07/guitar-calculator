@@ -1,4 +1,4 @@
-package uk.ac.cam.pgfw2.source;
+package uk.ac.cam.pgfw2.input;
 
 import javax.sound.sampled.AudioFormat;
 
@@ -13,9 +13,9 @@ public class AudioStream {
     // Sample rate from the reader
     private final float sampleRate;
     // Fixed number of values for rest of code
-    private static final int BUFFER_SAMPLE_SIZE = 1024;
+    private final int bufferSize;
 
-    public AudioStream(AudioReader reader) throws AudioException {
+    public AudioStream(AudioReader reader, int depth) throws AudioException {
         this.reader = reader;
 
         reader.open();
@@ -24,9 +24,11 @@ public class AudioStream {
         this.sampleRate = format.getSampleRate();
         int frameSize = format.getFrameSize();
 
+        this.bufferSize = 1 << depth;
+
         // Input buffer scaled with frameSize
-        this.inputBuffer = new byte[BUFFER_SAMPLE_SIZE * frameSize];
-        this.outputBuffer = new double[BUFFER_SAMPLE_SIZE];
+        this.inputBuffer = new byte[bufferSize * frameSize];
+        this.outputBuffer = new double[bufferSize];
     }
 
     public double[] getBuffer() {
@@ -41,7 +43,7 @@ public class AudioStream {
         }
 
         // Convert into doubles
-        for (int i = 0; i < BUFFER_SAMPLE_SIZE; i++) {
+        for (int i = 0; i < bufferSize; i++) {
             // Locate the 2 bytes for this sample
             int byteIndex = i * 2;
 

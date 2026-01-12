@@ -1,4 +1,4 @@
-package uk.ac.cam.pgfw2.source;
+package uk.ac.cam.pgfw2.input;
 
 public class AudioException extends Exception {
     public AudioException(String message) {
