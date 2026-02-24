@@ -1,4 +1,3 @@
-Guitar Audio to Tab converter!
-For Queens' College Winter Project
+Guitar Audio to Tab converter
 
 Needs Java Onnyx Runtime Jar installed
