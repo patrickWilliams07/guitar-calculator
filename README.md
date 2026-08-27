@@ -6,4 +6,4 @@
 - The custom PyTorch model merges parallel CNNs into a multi-headed output for each string, partially disambiguating clashes between notes.
 - 89% test set accuracy, beating the data set source.
 
-Needs the Java Onnyx Runtime Jar installed [Link to Runtime)[https://onnxruntime.ai/docs/get-started/with-java.html]
+Needs the Java Onnyx Runtime Jar installed [Link to Runtime][https://onnxruntime.ai/docs/get-started/with-java.html]
